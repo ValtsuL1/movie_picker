@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:movie_picker/providers/moviepicker.dart';
 import 'package:movie_picker/providers/my_app_state.dart';
 import 'package:movie_picker/widgets/big_card.dart';
 import 'package:movie_picker/widgets/swipeable_cards.dart';
@@ -22,7 +23,9 @@ class GeneratorPage extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           ElevatedButton(
-              onPressed: () => appState.fetchMovies(), child: Text("Fetch movies")),
+            onPressed: () => context.read<MoviePickerProvider>().send(), child: Text("Test grpc")),
+          ElevatedButton(
+            onPressed: () => appState.fetchMovies(), child: Text("Fetch movies")),
           BigCard(pair: pair),
           SizedBox(height: 10),
           SwipeableCards()
