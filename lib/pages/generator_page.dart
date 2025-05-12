@@ -24,17 +24,13 @@ class GeneratorPage extends StatelessWidget {
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          ElevatedButton(
-            key: const Key('test grpc'),
-            onPressed: () => context.read<MoviePickerProvider>().send(),
-            child: Text("Test grpc")),
+          SwipeableCards(),
+          SizedBox(height: 100),
           ElevatedButton(
             key: const Key('fetch movies'),
             onPressed: () => appState.fetchMovies(),
             child: Text("Fetch movies")),
-          BigCard(pair: pair),
-          SizedBox(height: 10),
-          SwipeableCards()
+          SizedBox(height: 100,)
         ],
       ),
     );
