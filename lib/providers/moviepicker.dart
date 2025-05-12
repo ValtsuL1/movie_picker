@@ -33,7 +33,6 @@ class MoviePickerProvider extends ChangeNotifier {
 
     _send.add(msg);
 
-    print("aweawewea");
   }
 
 }

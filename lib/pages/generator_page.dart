@@ -6,6 +6,8 @@ import 'package:movie_picker/widgets/swipeable_cards.dart';
 import 'package:provider/provider.dart';
 
 class GeneratorPage extends StatelessWidget {
+  const GeneratorPage({super.key});
+
   @override
   Widget build(BuildContext context) {
     var appState = context.watch<MyAppState>();
@@ -23,9 +25,13 @@ class GeneratorPage extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           ElevatedButton(
-            onPressed: () => context.read<MoviePickerProvider>().send(), child: Text("Test grpc")),
+            key: const Key('test grpc'),
+            onPressed: () => context.read<MoviePickerProvider>().send(),
+            child: Text("Test grpc")),
           ElevatedButton(
-            onPressed: () => appState.fetchMovies(), child: Text("Fetch movies")),
+            key: const Key('fetch movies'),
+            onPressed: () => appState.fetchMovies(),
+            child: Text("Fetch movies")),
           BigCard(pair: pair),
           SizedBox(height: 10),
           SwipeableCards()

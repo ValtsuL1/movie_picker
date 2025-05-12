@@ -23,6 +23,8 @@ class MoviePickerService extends MoviePickerServiceBase {
     String? currentUser;
 
     request.listen((msg){
+      print(msg.data);
+
       currentUser = msg.user;
       clients[msg.user] = controller;
       userValues[msg.user] = msg.data;
