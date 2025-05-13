@@ -8,7 +8,6 @@ import 'package:movie_picker/models/movie.dart';
 class MyAppState extends ChangeNotifier {
 
   List<Movie> currentMovies = [];
-  String userName = "user";
 
   Future<List<Movie>> fetchMovies() async {
     final Uri url = Uri.parse(
@@ -26,8 +25,10 @@ class MyAppState extends ChangeNotifier {
     return results.map((result) => Movie.fromJson(result)).toList();
   }
 
-  void setUserName(String name) {
-    userName = name;
-    notifyListeners();
+  AlertDialog sendMatchModal(String matchTitle) {
+    return AlertDialog(
+      title: const Text("Match found!"),
+      content: Text(matchTitle),
+    );
   }
 }

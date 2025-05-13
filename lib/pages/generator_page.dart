@@ -33,18 +33,30 @@ class GeneratorPage extends StatelessWidget {
               return Text("Cant access movies");
             }
           ),
-          Text(appState.userName),
+          Text(movieState.userName),
           TextFormField(controller: controller),
           TextButton(
             onPressed: () {
               print(controller.text);
 
-              appState.setUserName(controller.text);
+              movieState.setUserName(controller.text);
             },
             child: Text("save username")),
             SizedBox(height: 30,)
         ],
       ),
+    );
+  }
+
+  Future<void> dialogBuilder(BuildContext context) {
+    return showDialog<void>(
+      context: context,
+      builder: (BuildContext context) { 
+          return AlertDialog(
+            title: const Text("Match found!"),
+            content: Text("e"),
+          );
+      }
     );
   }
 }

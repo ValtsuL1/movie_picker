@@ -1,8 +1,10 @@
 import 'dart:async';
 
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 import 'package:grpc/grpc.dart';
 import 'package:movie_picker/generated/moviepicker.pbgrpc.dart';
+import 'package:movie_picker/pages/generator_page.dart';
 import 'package:movie_picker/providers/my_app_state.dart';
 
 class MoviePickerProvider extends ChangeNotifier {
@@ -13,6 +15,8 @@ class MoviePickerProvider extends ChangeNotifier {
   late final ResponseStream _receive;
 
   var appState = MyAppState();
+
+  String userName = "user";
 
   MoviePickerProvider() {
 
@@ -31,11 +35,17 @@ class MoviePickerProvider extends ChangeNotifier {
 
   void send(movieTitle) {
     var msg = StateMessage()
-    ..data = movieTitle 
-    ..user = appState.userName;
+    ..data = movieTitle
+    ..user = userName;
 
     _send.add(msg);
 
   }
 
+  void setUserName(String name) {
+    userName = name;
+    notifyListeners();
+  }
+
+  
 }
