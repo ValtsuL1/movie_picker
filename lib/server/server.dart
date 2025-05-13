@@ -15,7 +15,7 @@ Future<void> main() async {
 class MoviePickerService extends MoviePickerServiceBase {
   
   final Map<String, StreamController<StateMessage>> clients = {};
-  final Map<String, String> userValues = {};
+  final Map<String, List<String>> userValues = {};
 
   @override
   Stream<StateMessage> streamState(ServiceCall call, Stream<StateMessage> request) {
@@ -27,13 +27,21 @@ class MoviePickerService extends MoviePickerServiceBase {
 
       currentUser = msg.user;
       clients[msg.user] = controller;
-      userValues[msg.user] = msg.data;
+      
+      if (userValues.containsKey(msg.user)) {
+        userValues[msg.user]?.add(msg.data);
+      } else {
+        userValues[msg.user] = [msg.data];
+      }
+
+      print("Current server values: $userValues");
+      print("Current user: $currentUser");
 
       for(var entry in userValues.entries) {
-        if(entry.key != msg.user && entry.value == msg.data) {
+        if(entry.key != msg.user && entry.value.contains(msg.data)) {
           final matchMessage = StateMessage()
           ..user = 'server'
-          ..data = entry.value;
+          ..data = msg.data;
 
           clients[entry.key]?.add(matchMessage);
           clients[msg.user]?.add(matchMessage);

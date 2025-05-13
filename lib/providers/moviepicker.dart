@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:flutter/cupertino.dart';
 import 'package:grpc/grpc.dart';
 import 'package:movie_picker/generated/moviepicker.pbgrpc.dart';
+import 'package:movie_picker/providers/my_app_state.dart';
 
 class MoviePickerProvider extends ChangeNotifier {
 
@@ -10,6 +11,8 @@ class MoviePickerProvider extends ChangeNotifier {
   late final MoviePickerClient _stub;
   late final StreamController<StateMessage> _send;
   late final ResponseStream _receive;
+
+  var appState = MyAppState();
 
   MoviePickerProvider() {
 
@@ -26,10 +29,10 @@ class MoviePickerProvider extends ChangeNotifier {
     });
   }
 
-  void send() {
+  void send(movieTitle) {
     var msg = StateMessage()
-    ..data = "Test" 
-    ..user = "Testuser";
+    ..data = movieTitle 
+    ..user = appState.userName;
 
     _send.add(msg);
 

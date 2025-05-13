@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:movie_picker/pages/favorites_page.dart';
 import 'package:movie_picker/pages/generator_page.dart';
 
 class MyHomePage extends StatefulWidget {
@@ -19,7 +18,7 @@ class _MyHomePageState extends State<MyHomePage> {
       case 0:
         page = GeneratorPage();
       case 1:
-        page = FavoritesPage();
+        page = GeneratorPage();
       default:
         throw UnimplementedError('no widget for $selectedIndex');
     }
