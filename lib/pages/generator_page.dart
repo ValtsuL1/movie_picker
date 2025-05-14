@@ -13,6 +13,34 @@ class GeneratorPage extends StatelessWidget {
     var appState = context.watch<MyAppState>();
     var movieState = context.watch<MoviePickerProvider>();
 
+    Future<void> showAlert() async {
+      return showDialog(
+        context: context, 
+        builder: (BuildContext context) {
+          return AlertDialog(
+            title: const Text("Match found!"),
+            content: Text(movieState.matchingMovie),
+            actions: [
+              TextButton(
+                onPressed: () {
+                  Navigator.of(context).pop();
+                }, 
+                child: Text("OK"))
+            ],
+          );
+        });
+    }
+
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      if (movieState.matchFound) {
+        showAlert();
+        }
+      }
+    );
+
+
+    
+
     return Center(
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
@@ -42,21 +70,25 @@ class GeneratorPage extends StatelessWidget {
               movieState.setUserName(controller.text);
             },
             child: Text("save username")),
-            SizedBox(height: 30,)
+            SizedBox(height: 30,),
         ],
       ),
     );
   }
-
-  Future<void> dialogBuilder(BuildContext context) {
-    return showDialog<void>(
-      context: context,
-      builder: (BuildContext context) { 
-          return AlertDialog(
-            title: const Text("Match found!"),
-            content: Text("e"),
-          );
-      }
-    );
-  }
 }
+/*                                                  
+Container(
+              child: Builder(
+                builder: (context) {
+                  if (movieState.matchFound) {
+                    return showAlertDialog(
+                      context, 
+                      "TEst", 
+                      "content", 
+                      "confirmButtonTxt", 
+                      );
+                  }
+                return SizedBox(height: 0,);
+                }),
+            )
+            */

@@ -4,7 +4,6 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:grpc/grpc.dart';
 import 'package:movie_picker/generated/moviepicker.pbgrpc.dart';
-import 'package:movie_picker/pages/generator_page.dart';
 import 'package:movie_picker/providers/my_app_state.dart';
 
 class MoviePickerProvider extends ChangeNotifier {
@@ -13,6 +12,9 @@ class MoviePickerProvider extends ChangeNotifier {
   late final MoviePickerClient _stub;
   late final StreamController<StateMessage> _send;
   late final ResponseStream _receive;
+
+  bool matchFound = false;
+  String matchingMovie = "";
 
   var appState = MyAppState();
 
@@ -30,6 +32,9 @@ class MoviePickerProvider extends ChangeNotifier {
 
     _receive.listen((msg){
       print("message from server: ${msg.user}: ${msg.data}");
+      matchFound = true;
+      matchingMovie = msg.data;
+      notifyListeners();
     });
   }
 
@@ -46,6 +51,4 @@ class MoviePickerProvider extends ChangeNotifier {
     userName = name;
     notifyListeners();
   }
-
-  
 }

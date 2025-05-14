@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_card_swiper/flutter_card_swiper.dart';
 import 'package:movie_picker/providers/moviepicker.dart';
-import 'package:movie_picker/providers/my_app_state.dart';
 import 'package:provider/provider.dart';
 
 import '../models/movie.dart';
@@ -32,7 +31,7 @@ class SwipeableCards extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    var appState = context.watch<MyAppState>();
+    //var appState = context.watch<MyAppState>();
 
     var moviePicker = context.read<MoviePickerProvider>();
 
