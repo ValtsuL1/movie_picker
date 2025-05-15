@@ -24,11 +24,4 @@ class MyAppState extends ChangeNotifier {
 
     return results.map((result) => Movie.fromJson(result)).toList();
   }
-
-  AlertDialog sendMatchModal(String matchTitle) {
-    return AlertDialog(
-      title: const Text("Match found!"),
-      content: Text(matchTitle),
-    );
-  }
 }
