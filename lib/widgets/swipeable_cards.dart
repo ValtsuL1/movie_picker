@@ -14,24 +14,11 @@ class SwipeableCards extends StatelessWidget {
   List<Widget> cards = [
     Container(
       alignment: Alignment.center,
-      color: Colors.amber,
-      child: Text("First"),
     ),
-    Container(
-      alignment: Alignment.center,
-      color: Colors.red,
-      child: Text("Second"),
-    ),
-    Container(
-      alignment: Alignment.center,
-      color: Colors.cyan,
-      child: Text("Third"),
-    )
   ];
 
   @override
   Widget build(BuildContext context) {
-    //var appState = context.watch<MyAppState>();
 
     var moviePicker = context.read<MoviePickerProvider>();
 

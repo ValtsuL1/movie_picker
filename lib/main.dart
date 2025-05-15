@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
-import 'package:movie_picker/pages/generator_page.dart';
 import 'package:movie_picker/pages/my_home_page.dart';
 import 'package:movie_picker/providers/moviepicker.dart';
 import 'package:movie_picker/providers/my_app_state.dart';

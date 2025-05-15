@@ -76,19 +76,3 @@ class GeneratorPage extends StatelessWidget {
     );
   }
 }
-/*                                                  
-Container(
-              child: Builder(
-                builder: (context) {
-                  if (movieState.matchFound) {
-                    return showAlertDialog(
-                      context, 
-                      "TEst", 
-                      "content", 
-                      "confirmButtonTxt", 
-                      );
-                  }
-                return SizedBox(height: 0,);
-                }),
-            )
-            */
